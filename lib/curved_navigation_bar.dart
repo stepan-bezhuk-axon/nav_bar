@@ -184,35 +184,40 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                       : item.title;
 
                   return Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        NavButton(
-                          onTap: _buttonTap,
-                          position: _pos,
-                          length: _length,
-                          index: widget.items.indexOf(item),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              item.icon,
-                              if (!item.isCenter) ...[
-                                SizedBox(height: 2.0),
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        _buttonTap(widget.items.indexOf(item));
+                      },
+                      child: Column(
+                        children: <Widget>[
+                          NavButton(
+                            position: _pos,
+                            length: _length,
+                            index: widget.items.indexOf(item),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                item.icon,
+                                if (!item.isCenter) ...[
+                                  SizedBox(height: 2.0),
+                                ],
                               ],
-                            ],
-                          ),
-                        ),
-                        if (item.title != null) ...[
-                          Flexible(
-                            flex: 2,
-                            child: Text(
-                              title!,
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
                             ),
                           ),
+                          if (item.title != null) ...[
+                            Flexible(
+                              flex: 2,
+                              child: Text(
+                                title!,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
                   );
                 }).toList(),
