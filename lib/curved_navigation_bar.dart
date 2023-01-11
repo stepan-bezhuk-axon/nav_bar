@@ -84,8 +84,11 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
       final newPosition = widget.index / _length;
       _startingPos = _pos;
       _endingIndex = widget.index;
-      _animationController.animateTo(newPosition,
-          duration: widget.animationDuration, curve: widget.animationCurve);
+      _animationController.animateTo(
+        newPosition,
+        duration: widget.animationDuration,
+        curve: widget.animationCurve,
+      );
     }
   }
 
@@ -112,7 +115,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
           BoxShadow(
             color: widget.backgroundColor,
             blurRadius: 4,
-            offset: Offset(4, 8), // Shadow position
+            offset: Offset(4, 8),
           ),
         ],
       ),
@@ -135,11 +138,13 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                   0,
                   -(1 - _buttonHide) * 80,
                 ),
-                child: Material(
-                  color: _isCenter
-                      ? Colors.white.withOpacity(0.5)
-                      : Colors.white.withOpacity(0),
-                  type: MaterialType.circle,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: _isCenter
+                        ? Colors.white.withOpacity(0.5)
+                        : Colors.white.withOpacity(0),
+                    shape: BoxShape.circle,
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: _icon,
