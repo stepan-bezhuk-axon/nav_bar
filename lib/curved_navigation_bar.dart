@@ -238,15 +238,13 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
 
     if (widget.items[index].isCenter) {
       final newPosition = index / _length;
-      setState(() {
-        _startingPos = _pos;
-        _endingIndex = index;
-        _animationController.animateTo(
-          newPosition,
-          duration: widget.animationDuration,
-          curve: widget.animationCurve,
-        );
-      });
+      _startingPos = _pos;
+      _endingIndex = index;
+      _animationController.animateTo(
+        newPosition,
+        duration: widget.animationDuration,
+        curve: widget.animationCurve,
+      );
     }
   }
 }
